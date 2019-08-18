@@ -11,7 +11,14 @@
      
      ![使用](../images/redis-hash-use.jpg)
 * Set
+     > 无序集合
+
+     ![-](../images/redis-set.png)
+     
 * ZSet
+     > 有序集合
+
+     ![-](../images/redis-zset.png)
 * List
      > 类似java里面的queue
 
