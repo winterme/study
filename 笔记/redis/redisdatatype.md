@@ -18,6 +18,8 @@
 * ZSet
      > 有序集合
 
+     可以用来做数据搜索
+
      ![-](../images/redis-zset.png)
 * List
      > 类似java里面的queue
