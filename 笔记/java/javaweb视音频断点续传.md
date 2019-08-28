@@ -1,6 +1,7 @@
 # javaweb视音频断点续传
 
-@RequestMapping("/getVideoByUid")
+
+    @RequestMapping("/getVideoByUid")
     public void getVideoByUid(String videoId , String dir , HttpServletRequest request, HttpServletResponse response){
         String path = fileSavePath + dir + videoId +".mp4";
 
