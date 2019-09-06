@@ -6,7 +6,7 @@
 
     说明：alter table 表名 drop column 字段名;
 
-     例：alter table users drop column Head;
+    例：alter table users drop column Head;
 
      
 
