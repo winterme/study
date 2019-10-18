@@ -36,11 +36,21 @@
 ## nginx
 * [linux下安装nginx.md](笔记/nginx/linux下安装nginx.md)
 ## oracle
+* [DB_LINK.md](笔记/oracle/DB_LINK.md)
 * [oracle-transaction.md](笔记/oracle/oracle-transaction.md)
 * [oracle-分析函数.md](笔记/oracle/oracle-分析函数.md)
+* [oracle-死锁.md](笔记/oracle/oracle-死锁.md)
+* [oracle分区.md](笔记/oracle/oracle分区.md)
 * [oracle删除外键.md](笔记/oracle/oracle删除外键.md)
+* [oracle用户操作.md](笔记/oracle/oracle用户操作.md)
+* [oracle索引.md](笔记/oracle/oracle索引.md)
 * [sql基础.md](笔记/oracle/sql基础.md)
 * [使用plsql将excel数据导入表中.md](笔记/oracle/使用plsql将excel数据导入表中.md)
+* [同义词.md](笔记/oracle/同义词.md)
+* [数据库设计.md](笔记/oracle/数据库设计.md)
+* [物化视图.md](笔记/oracle/物化视图.md)
+* [用户操作、赋权、事务、锁、索引资料.doc](笔记/oracle/用户操作、赋权、事务、锁、索引资料.doc)
+* [表空间知识系列.md](笔记/oracle/表空间知识系列.md)
 ## redis
 * [installredis.md](笔记/redis/installredis.md)
 * [redisdatatype.md](笔记/redis/redisdatatype.md)
@@ -49,4 +59,3 @@
 * [redis集群搭建.md](笔记/redis/redis集群搭建.md)
 ## thy
 * [thy直接获取key的值.md](笔记/thy/thy直接获取key的值.md)
-## wxminiprogram
