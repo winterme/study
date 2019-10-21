@@ -13,4 +13,4 @@
 6. 查看文件 退件 less，日志查看推荐 tailf
 
     
-        less -N m4.log 【带行号的显示,f下一屏，b上一屏】
+        less -N m4.log 【带行号的显示,f下一屏，b上一屏】  
