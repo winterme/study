@@ -2,12 +2,27 @@
  学习笔记
 
 
+## activemq
+* [activemq-connection-session介绍.md](笔记/activemq/activemq-connection-session介绍.md)
+* [activemq基本了解和入门helloword.md](笔记/activemq/activemq基本了解和入门helloword.md)
+* [activemq安全机制.md](笔记/activemq/activemq安全机制.md)
+* [mq基本了解.md](笔记/activemq/mq基本了解.md)
+* [produce-consume-介绍.md](笔记/activemq/produce-consume-介绍.md)
+## dos
+* [dos命令大全.md](笔记/dos/dos命令大全.md)
 ## ffmpeg
 * [使用ffmpeg把音乐和图片合成视频.md](笔记/ffmpeg/使用ffmpeg把音乐和图片合成视频.md)
 ## java
 * [javaweb视音频断点续传.md](笔记/java/javaweb视音频断点续传.md)
 * [修改HttpServletRequest中header中的信息.md](笔记/java/修改HttpServletRequest中header中的信息.md)
 * [关于使用JavaMail发邮件-连接超时问题.md](笔记/java/关于使用JavaMail发邮件-连接超时问题.md)
+## jvm
+* [java内存分配图.md](笔记/jvm/java内存分配图.md)
+* [jvm堆栈-方法区的关系.md](笔记/jvm/jvm堆栈-方法区的关系.md)
+* [jvm常用参数.md](笔记/jvm/jvm常用参数.md)
+* [jvm引用.md](笔记/jvm/jvm引用.md)
+* [引用计数算法和可达性算法判断对象是否死亡.md](笔记/jvm/引用计数算法和可达性算法判断对象是否死亡.md)
+* [理解gc日志.md](笔记/jvm/理解gc日志.md)
 ## linux
 * [centos7.x开放端口.md](笔记/linux/centos7.x开放端口.md)
 * [java-jar启动后台运行.md](笔记/linux/java-jar启动后台运行.md)

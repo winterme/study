@@ -12,7 +12,7 @@
 ![x](../images/jvm-heap.jpg)
 
 | 参数        | 作用    
-| --------   | -----:   
+| --------   | -----   
 | -XX:InitialSurvivorRatio        | 新生代Eden/Survivor空间的初始比例
 | -XX:Newratio | Old区 和 Yong区 的内存比例     
 
