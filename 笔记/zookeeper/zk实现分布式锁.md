@@ -1,8 +1,16 @@
 # zk实现分布式锁
 
+> 实现原理
+
+使用zk的临时节点，然后监听该节点，在需要锁的时候注册临时节点，使用完毕之后删除该节点，调用监听的方法
+
+> 参考文章：
+
 https://blog.csdn.net/liyiming2017/article/details/83786331
 
-    package zk;
+> 实例代码：
+
+    package zzq.zk;
 
     import org.apache.zookeeper.*;
     import org.apache.zookeeper.data.Stat;
@@ -28,7 +36,7 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
         private String lockNodeName = "lock_";
 
 
-        //
+        // 监听器
         private Watcher lockWatcher = new Watcher() {
             @Override
             public void process(WatchedEvent event) {
@@ -127,7 +135,11 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
                     if(stat==null){
                         attemptLock();
                     }else{
-                        
+                        // 不为null的时候证明前一个节点还在，则等待，唤醒之后继续获取锁
+                        synchronized (lockWatcher){
+                            this.wait();
+                        }
+                        attemptLock();
                     }
                 }
 
@@ -136,21 +148,46 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
             }
         }
 
+        public void releaseLock(){
+            try {
+                zooKeeper.delete(lockPath , -1);
+                zooKeeper.close();
+                logger.info(Thread.currentThread().getName() + " , 释放锁 =>" + lockPath );
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (KeeperException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+> 调用例子：
+
+    public class ZkLockTest implements Runnable {
+
         public static void main(String[] args) {
-            ArrayList<String> list = new ArrayList<>();
-            list.add("lock_0000000002");
-            list.add("lock_0000000003");
-            list.add("lock_0000000004");
+            ZkLockTest lockTest = new ZkLockTest();
+            ExecutorService service = Executors.newCachedThreadPool();
+            for (int i = 0; i < 100; i++) {
+                service.submit(lockTest);
+            }
 
-            String lockPath = "/zklock/lock_0000000002";
-            String rootLockPath = "/zklock";
+        }
 
+        private int count = 100;
 
-            System.out.println(list.indexOf(lockPath.substring(rootLockPath.length() + 1)));
-            System.out.println( lockPath.substring(rootLockPath.length() + 1) );
-            int i = lockPath.indexOf(lockPath.substring(rootLockPath.length() + 1));
+        @Override
+        public void run() {
+            ZkLock lock = new ZkLock("192.168.31.211:2181,192.168.31.103:2181,192.168.31.23:2181",
+                    10 * 1000, "/zklock");
 
-            System.out.println(i);
+            lock.lock();
 
+            count--;
+
+            System.err.println(Thread.currentThread().getName() + "==========>" + count);
+
+            lock.releaseLock();
         }
     }
