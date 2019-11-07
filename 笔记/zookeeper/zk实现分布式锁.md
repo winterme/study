@@ -36,7 +36,7 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
         private String lockNodeName = "lock_";
 
 
-        // 监听器
+        //
         private Watcher lockWatcher = new Watcher() {
             @Override
             public void process(WatchedEvent event) {
@@ -88,6 +88,9 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
         public void lock(){
             // 创建锁，临时节点
             createLock();
+
+            // 获取锁
+            attemptLock();
         }
 
         /**
@@ -129,7 +132,7 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
                     return;
                 }else{
                     // 监听前一个
-                    Stat stat = zooKeeper.exists(children.get(index - 1), lockWatcher);
+                    Stat stat = zooKeeper.exists( lockRootPath + "/" + children.get(index - 1), lockWatcher);
 
                     // 前一个节点执行完了，掉线了，重新获取锁
                     if(stat==null){
@@ -137,7 +140,7 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
                     }else{
                         // 不为null的时候证明前一个节点还在，则等待，唤醒之后继续获取锁
                         synchronized (lockWatcher){
-                            this.wait();
+                            lockWatcher.wait();
                         }
                         attemptLock();
                     }
@@ -152,7 +155,7 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
             try {
                 zooKeeper.delete(lockPath , -1);
                 zooKeeper.close();
-                logger.info(Thread.currentThread().getName() + " , 释放锁 =>" + lockPath );
+                /*logger.info(Thread.currentThread().getName() + " , 释放锁 =>" + lockPath );*/
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (KeeperException e) {
@@ -162,7 +165,11 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
     }
 
 
+
 > 调用例子：
+
+    import java.util.concurrent.ExecutorService;
+    import java.util.concurrent.Executors;
 
     public class ZkLockTest implements Runnable {
 
@@ -183,6 +190,12 @@ https://blog.csdn.net/liyiming2017/article/details/83786331
                     10 * 1000, "/zklock");
 
             lock.lock();
+
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             count--;
 
