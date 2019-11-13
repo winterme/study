@@ -10,6 +10,8 @@
 * [produce-consume-介绍.md](笔记/activemq/produce-consume-介绍.md)
 ## dos
 * [dos命令大全.md](笔记/dos/dos命令大全.md)
+## dubboAnddubbox
+* [dubbo介绍.md](笔记/dubboAnddubbox/dubbo介绍.md)
 ## ffmpeg
 * [使用ffmpeg把音乐和图片合成视频.md](笔记/ffmpeg/使用ffmpeg把音乐和图片合成视频.md)
 ## java
@@ -18,9 +20,11 @@
 * [关于使用JavaMail发邮件-连接超时问题.md](笔记/java/关于使用JavaMail发邮件-连接超时问题.md)
 ## jvm
 * [java内存分配图.md](笔记/jvm/java内存分配图.md)
+* [jvm垃圾收集.md](笔记/jvm/jvm垃圾收集.md)
 * [jvm堆栈-方法区的关系.md](笔记/jvm/jvm堆栈-方法区的关系.md)
 * [jvm常用参数.md](笔记/jvm/jvm常用参数.md)
 * [jvm引用.md](笔记/jvm/jvm引用.md)
+* [TLAB栈上分配.md](笔记/jvm/TLAB栈上分配.md)
 * [引用计数算法和可达性算法判断对象是否死亡.md](笔记/jvm/引用计数算法和可达性算法判断对象是否死亡.md)
 * [理解gc日志.md](笔记/jvm/理解gc日志.md)
 ## linux
@@ -74,3 +78,16 @@
 * [redis集群搭建.md](笔记/redis/redis集群搭建.md)
 ## thy
 * [thy直接获取key的值.md](笔记/thy/thy直接获取key的值.md)
+## wxminiprogram
+## zookeeper
+* [curatorDistributeDoubleBarrier.md](笔记/zookeeper/curatorDistributeDoubleBarrier.md)
+* [curator实现分布式锁.md](笔记/zookeeper/curator实现分布式锁.md)
+* [curator的监听.md](笔记/zookeeper/curator的监听.md)
+* [watcher-zk状态-事件类型.md](笔记/zookeeper/watcher-zk状态-事件类型.md)
+* [zk安装.md](笔记/zookeeper/zk安装.md)
+* [zk实现分布式锁.md](笔记/zookeeper/zk实现分布式锁.md)
+* [zk操作工具-curator.md](笔记/zookeeper/zk操作工具-curator.md)
+* [zk监控节点示例代码.md](笔记/zookeeper/zk监控节点示例代码.md)
+* [zookeeper的ACL.md](笔记/zookeeper/zookeeper的ACL.md)
+* [zookeeper简介.md](笔记/zookeeper/zookeeper简介.md)
+
