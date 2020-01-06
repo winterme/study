@@ -32,3 +32,7 @@ bin/kafka-topics.sh --zookeeper 127.0.0.1:2181 --delete --topic mysed
     以前老版本写 zookeeper:2181 ，新版本写 kafak地址
 
 ./kafka-console-consumer.sh --topic msgtopic --bootstrap-server 103.118.42.35:9092
+
+### 控制台从头开始消费消息
+
+./kafka-console-consumer.sh --topic msgtopic --bootstrap-server 103.118.42.35:9092 --from-beginning
