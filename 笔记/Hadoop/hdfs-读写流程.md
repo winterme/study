@@ -80,3 +80,40 @@
 
 
     }
+
+
+
+### hdfs 获取文件夹下的所有文件代码实例
+
+    @Test   
+    public void showAllFiles() throws IOException {
+        Configuration entries = new Configuration();
+        entries.set("fs.defaultFS", "hdfs://192.168.1.122:9000");
+        entries.set("hadoop.security.authentication", "simple");
+
+
+        UserGroupInformation.setConfiguration(entries);
+
+        FileSystem fileSystem = FileSystem.get(entries);
+
+        Path basePath = new Path("/");
+        FileStatus[] fileStatuses = fileSystem.listStatus(basePath);
+
+        ArrayList<String> list = new ArrayList<>();
+
+        getAllFile(fileStatuses , fileSystem , list);
+
+        for (String s : list) {
+            System.out.println( s );
+        }
+    }
+
+    public void getAllFile(FileStatus[] fileStatus, FileSystem fileSystem , ArrayList<String> list ) throws IOException {
+        for (FileStatus status : fileStatus) {
+            if(status.isFile()){
+               list.add( status.getPath().toUri().getPath() );
+            }else if(status.isDirectory()){
+                getAllFile(fileSystem.listStatus(status.getPath()) , fileSystem , list);
+            }
+        }
+    }
