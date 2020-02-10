@@ -25,3 +25,6 @@
 （6）提交代码到指定分支
 
         git push origin xxx （xxx为要提交代码的分支名称）
+
+
+gitlab 使用方法：https://www.jianshu.com/p/1f69d2a9e528        

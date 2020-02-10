@@ -22,3 +22,24 @@ Setup e2e tests with Nightwatch? (Y/n) n是否需要单元测试，这里根据�
 cd pname(项目目录)；
 npm install 安装依赖；
 npm run dev 本地运行项目
+
+
+
+### 整合 element-ui
+
+cnpm install element-ui --save
+
+cnpm install element-theme -g (使用全局安装，后面使用少坑)
+
+cnpm install element-theme-chalk -D
+
+cnpm install file-loader --save
+
+et -i
+
+会在当前目录生成一个文件element-variables.sass，再次输入命令：
+
+et -o src/theme-et/ --意思是在src/theme-et文件夹下初始化
+
+
+https://www.cnblogs.com/jy1314520/p/jylegend.html
