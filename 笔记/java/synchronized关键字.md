@@ -36,7 +36,7 @@
 
     锁住的是对象，lock 对象
 
-    ReentrantLock 加锁的时候，是改变了ReentrantLock对象里面的一个熟悉，
+    ReentrantLock 加锁的时候，是改变了ReentrantLock对象里面的一个属性，
     那么 synchronized 又是怎样上的锁？
     答案：synchronized 锁住的是对象的对象头
 
@@ -82,14 +82,28 @@ java对象头由什么组成？object header
 
 
 使用 synchronized 关键字的时候，对象的状态：(该状态存放再 Mark Word 里面)
-1. 无状态，new出来的时候(00)
-2. 偏向锁
-3. 轻量
-4. 重量锁
-5. gc标记(比如说方法里面new出来的对象不存在了，栈帧没了对象也就没了，要被回收了)
+--  多的一个第一位 0/1 是标识是否有偏向锁
+1. 无状态，new出来的时候(001)
+2. 偏向锁 (101)
+3. 轻量 (00)
+4. 重量锁 (10)
+5. gc标记(比如说方法里面new出来的对象不存在了，栈帧没了对象也就没了，要被回收了) (11)
 
 
 ![x](../images/sync-object-header.jpg)
+
+    对象头倒着读
+    经过一次gc之后第一个的倒数3-7 变成了 0001 证明+了1岁
+
+    lock.L object internals:
+    OFFSET  SIZE                    TYPE DESCRIPTION                               VALUE
+        0     4                         (object header)                           09 ad 34 36 (00001001 10101101 00110100 00110110) (909421833)
+        4     4                         (object header)                           59 00 00 00 (01011001 00000000 00000000 00000000) (89)
+        8     4                         (object header)                           43 c1 00 20 (01000011 11000001 00000000 00100000) (536920387)
+        12     4                     int L.i                                       1000000000
+        16     4   com.zzq.DfsController L.dfsController                           (object)
+        20     4                         (loss due to the next object alignment)
+
 
 hashcode 真的存在吗？
 
