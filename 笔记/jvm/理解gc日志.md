@@ -4,7 +4,7 @@
 ![x](../images/jvm-gc-log-read-01.jpg)
 
 ##### Full GC 日志
-![x](../images/jvm-gc-log-read-01.jpg)
+![img](D:\githubWorkSpace\m2\study\笔记\images\jvm-gc-log-read-09.jpg)
 
 ```参考文章：https://www.cnblogs.com/qlqwjy/p/7929414.html```
 
