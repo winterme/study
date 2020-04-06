@@ -22,18 +22,21 @@
     （3）对外开发端口
     查看想开的端口是否已开：
     firewall-cmd --query-port=6379/tcp
-
+    
     添加指定需要开放的端口：
     firewall-cmd --add-port=123/tcp --permanent
     重载入添加的端口：
     firewall-cmd --reload
     查询指定端口是否开启成功：
     firewall-cmd --query-port=123/tcp
-
+    
     移除指定端口：
     firewall-cmd --permanent --remove-port=123/tcp
-
+    
     安装iptables-services ：
     yum install iptables-services 
     进入下面目录进行修改：
     /etc/sysconfig/iptables
+关闭端口
+
+firewall-cmd --permanent --zone=public --remove-port=8080/tcp
