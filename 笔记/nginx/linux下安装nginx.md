@@ -11,7 +11,7 @@ yum install wget -y
 2：因为Nginx以来与gcc的编译环境，所以，在mini centos中需要安装编译环境来使Nginx能够编译起来
 
 yum install gcc-c++
-  
+
 
 3：Nginx的http模块需要使用pcre来解析正则表达式
 
@@ -26,7 +26,7 @@ yum -y install zlib zlib-devel
 5：openssl安装
 
 yum install -y openssl openssl-devel
- 
+
 
 6：官网下载 http://nginx.org/en/download.html 找到自己需要的版本下载(以下为最新版本)
 
@@ -51,7 +51,7 @@ tar zxvf nginx-1.13.11.tar.gz
 
 cd nginx-1.13.11
 ./configure  --prefix=/opt/nginx-1-13      #指定安装目录
- 
+
 
 3：在/opt/nginx/nginx-1.13.11目录下执行编译命令
 
