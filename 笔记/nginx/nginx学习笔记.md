@@ -467,3 +467,75 @@ upstream 可以设置访问负载均衡策略。
 		location /user-center/static/ {
 			proxy_pass http://192.168.1.105/webapp/static/;
 		}
+## 8. nginx 高可用
+
+假如只有一个 nginx，然后nginx 挂了，那岂不是系统就崩了，那肯定不行，就设置 nginx 主从
+
+图示：
+
+![image-20200505202636398](..\images\nginx-09)
+
+
+
+### 准备工作
+
+1. 准备两台服务器
+2. 在两台服务器上安装 nginx
+3. 在两台服务器上安装 keepalived
+
+#### 在两台服务器安装 keepalived
+
+使用 yum 命令进行安装
+
+```
+yum install keepalived -y
+```
+
+安装之后，在 etc 里面生成目录 keepalived ， 有文件 keepalived.conf
+
+
+
+#### 完成高可用配置（主从配置）
+
+keepalived 配置
+
+
+
+分为三部分
+
+1. 全局配置
+2. 检测脚本配置
+3. 虚拟ip配置
+
+
+
+**全局配置里面的 router_id 后面写的是主机配置，LVS_DEVELBACK 就是 /etc/host 里面的 ip 配置，通过这个ip路由到主机**
+
+![image-20200505201732135](..\images\nginx-06)
+
+![image-20200505201850179](..\images\nginx-07)
+
+
+
+脚本文件
+
+![image-20200505202501952](..\images\nginx-08)
+
+### nginx 处理请求流程
+
+发送请求，先到nginx 中的 master ，master 相当于管理员，管理员得到任务之后把任务给下面的 worker，worker 通过争抢机制得到任务，然后可以进行反向代理或者直接处理请求。返回给客户端。
+
+![image-20200505203118258](..\images\nginx-10)
+
+![image-20200505203236173](..\images\nginx-11)
+
+#### 一个 master 和多个 worker 这样设计有什么好处？
+
+1. 可以使用 nginx -s reload 进行热部署
+2. 每个 worker 都是独立的进程
+   1. 因为是独立的，所以可以不加锁执行，节省了锁带来的性能消耗
+   2. worker之间不会相互影响，一个进程退出后，其他进程还在工作，服务不会中断，master很快就会启动新的进程。还有可能就是 worker 进程异常退出，这会导致这个 worker 上的所有请求失败。不过不会影响到所有进程。所以降低了风险。
+
+worker 数和 cpu 核数保持一致为最好。
+
+![image-20200505204854412](..\images\nginx-12)
