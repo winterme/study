@@ -539,3 +539,59 @@ keepalived 配置
 worker 数和 cpu 核数保持一致为最好。
 
 ![image-20200505204854412](..\images\nginx-12)
+
+
+
+## 9. 小技巧
+
+### 9.1 nginx根据域名来转发请求
+
+复制server，修改 server_name，根据 域名来转发
+
+    server {
+        listen       80;
+        server_name  c.chenparty.com;
+    
+        #charset koi8-r;
+    
+        #access_log  logs/host.access.log  main;
+    
+        location / {
+            root   /usr/local/nginx1.3/html;
+            index  index.html index.htm;
+        }
+    }
+    
+    server {
+        listen       80;
+        server_name  kod.chenparty.com;
+    
+        #charset koi8-r;
+    
+        #access_log  logs/host.access.log  main;
+    
+        location / {
+    		proxy_pass http://127.0.0.1:82/KODExplorer/;
+    		proxy_set_header Host                $host:$server_port;
+    		proxy_set_header X-Forwarded-For     $proxy_add_x_forwarded_for;
+    		proxy_set_header X-Forwarded-Proto   $scheme;
+    		proxy_set_header X-Forwarded-Port    $server_port;
+    	}
+    }
+    
+    server {
+        listen       80;
+        server_name  chat.chenparty.com;
+    
+        #charset koi8-r;
+    
+        #access_log  logs/host.access.log  main;
+    
+        location / {
+    		proxy_pass http://127.0.0.1:8089;
+    		proxy_set_header Host                $host:$server_port;
+    		proxy_set_header X-Forwarded-For     $proxy_add_x_forwarded_for;
+    		proxy_set_header X-Forwarded-Proto   $scheme;
+    		proxy_set_header X-Forwarded-Port    $server_port;
+    	}
+    }

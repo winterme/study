@@ -6,7 +6,7 @@ show create table [table_name]
 
 ### 创建索引
 
-create index [index_name] ```[table_name](colunm1 ... )```
+create index [index_name]  on  ```[table_name](colunm1 ... )```
 
 ### 查看一张表的索引
 
